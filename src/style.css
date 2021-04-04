@@ -32,10 +32,10 @@ span {
 }
 
 small {
+  text-align: left;
   font-size: 12px;
-  text-align: right;
   display: block;
-  margin-right: 20px;
+  margin: 20px;
 }
 
 .now,
@@ -83,4 +83,8 @@ small {
 
 #current-location {
   background-color: white;
+}
+
+#current-time {
+  text-align: right;
 }
