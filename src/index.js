@@ -20,9 +20,14 @@ updatedOn.innerHTML = `Updated on ${day} ${time}:00`;
 
 // Handles temperature
 
-function showTemperature(response) {
+function showWeather(response) {
   let temperature = Math.round(response.data.main.temp);
+  let humidity = response.data.main.humidity;
+  let wind = response.data.wind.speed;
+
   document.querySelector("#current-temp").innerHTML = `${temperature}°C`;
+  document.querySelector("#humidity").innerHTML = `${humidity}%`;
+  document.querySelector("#wind").innerHTML = `${wind}km/h`;
 }
 
 // Handles search
@@ -32,7 +37,7 @@ function handleSearch(thisCity) {
   let apiKey = "fcb92fde799e36113733f7774e4cedb1";
   let cityTemperatureUrl = `${apiEndpoint}q=${thisCity}&units=metric&appid=${apiKey}`;
   document.querySelector("#city").innerHTML = `${thisCity}`;
-  axios.get(cityTemperatureUrl).then(showTemperature);
+  axios.get(cityTemperatureUrl).then(showWeather);
 }
 
 function searchCity() {
@@ -58,7 +63,7 @@ function handleLocation(position) {
   let apiKey = "fcb92fde799e36113733f7774e4cedb1";
   let positionTemperatureUrl = `${apiEndpoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appId=${apiKey}`;
 
-  axios.get(positionTemperatureUrl).then(showTemperature);
+  axios.get(positionTemperatureUrl).then(showWeather);
   axios.get(positionTemperatureUrl).then(showCurrentCity);
 }
 
