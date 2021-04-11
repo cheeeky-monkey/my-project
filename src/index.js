@@ -18,7 +18,7 @@ let time = currentTime.getHours();
 let updatedOn = document.querySelector("#current-time");
 updatedOn.innerHTML = `Updated on ${day} ${time}:00`;
 
-// Handles temperature
+// Handles weather display
 
 function showWeather(response) {
   let temperature = Math.round(response.data.main.temp);
@@ -29,7 +29,7 @@ function showWeather(response) {
 
   document.querySelector("#current-temp").innerHTML = `${temperature}°C`;
   document.querySelector("#humidity").innerHTML = `${humidity}%`;
-  document.querySelector("#wind").innerHTML = `${wind}km/h`;
+  document.querySelector("#wind").innerHTML = `${wind}m/s`;
   document.querySelector("#description").innerHTML = `${description}`;
   document
     .querySelector("#icon-now")
