@@ -24,10 +24,16 @@ function showWeather(response) {
   let temperature = Math.round(response.data.main.temp);
   let humidity = response.data.main.humidity;
   let wind = response.data.wind.speed;
+  let description = response.data.weather[0].description;
+  let icon = response.data.weather[0].icon;
 
   document.querySelector("#current-temp").innerHTML = `${temperature}°C`;
   document.querySelector("#humidity").innerHTML = `${humidity}%`;
   document.querySelector("#wind").innerHTML = `${wind}km/h`;
+  document.querySelector("#description").innerHTML = `${description}`;
+  document
+    .querySelector("#icon-now")
+    .setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
 }
 
 // Handles search

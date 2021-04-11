@@ -88,3 +88,11 @@ small {
 #current-time {
   text-align: right;
 }
+
+#description {
+  font-size: 14px;
+}
+
+#description::first-letter {
+  text-transform: capitalize;
+}
