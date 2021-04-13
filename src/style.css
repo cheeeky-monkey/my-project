@@ -70,7 +70,7 @@ small {
 }
 
 #search-button {
-  background-color: rgb(93, 93, 201);
+  background-color: #634bb9;
   color: white;
 }
 
@@ -95,4 +95,16 @@ small {
 
 #description::first-letter {
   text-transform: capitalize;
+}
+
+.units a {
+  color: #634bb9;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+a.inactive-link {
+  color: black;
+  font-weight: bolder;
+  cursor: default;
 }

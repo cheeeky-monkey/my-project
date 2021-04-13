@@ -13,21 +13,32 @@ let days = [
 ];
 let day = days[currentTime.getDay()];
 
-let time = currentTime.getHours();
+let hours = currentTime.getHours();
+if (hours < 10) {
+  hours = `0${hours}`;
+}
+
+let minutes = currentTime.getMinutes();
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
 
 let updatedOn = document.querySelector("#current-time");
-updatedOn.innerHTML = `Updated on ${day} ${time}:00`;
+updatedOn.innerHTML = `Updated on ${day} ${hours}:${minutes}`;
 
 // Handles weather display
 
 function showWeather(response) {
-  let temperature = Math.round(response.data.main.temp);
   let humidity = response.data.main.humidity;
   let wind = response.data.wind.speed;
   let description = response.data.weather[0].description;
   let icon = response.data.weather[0].icon;
 
-  document.querySelector("#current-temp").innerHTML = `${temperature}°C`;
+  celsiusTemperature = response.data.main.temp;
+
+  document.querySelector("#current-temp").innerHTML = `${Math.round(
+    celsiusTemperature
+  )}°C`;
   document.querySelector("#humidity").innerHTML = `${humidity}%`;
   document.querySelector("#wind").innerHTML = `${wind}m/s`;
   document.querySelector("#description").innerHTML = `${description}`;
@@ -73,11 +84,41 @@ function handleLocation(position) {
   axios.get(positionTemperatureUrl).then(showCurrentCity);
 }
 
-// Handles current location temperature
+// Handles current location weather
 function showCurrentLocationTemperature(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(handleLocation);
 }
+
+// Handles temperature conversion to Celsius
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+
+  let temperatureElement = document.querySelector("#current-temp");
+  temperatureElement.innerHTML = `${Math.round(celsiusTemperature)}°C`;
+
+  fahrenheit.classList.remove("inactive-link");
+  celsius.classList.add("inactive-link");
+}
+
+// Handles temperature conversion to Fahrenheit
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#current-temp");
+  let temperatureInFahrenheit = (Math.round(celsiusTemperature) * 9) / 5 + 32;
+  temperatureElement.innerHTML = `${Math.round(temperatureInFahrenheit)}°F`;
+
+  celsius.classList.remove("inactive-link");
+  fahrenheit.classList.add("inactive-link");
+}
+
+let celsiusTemperature = null;
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", showCelsiusTemperature);
+
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
 
 let searchField = document.querySelector("#search");
 searchField.addEventListener("submit", showCityTemperature);
