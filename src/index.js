@@ -27,26 +27,39 @@ function formatTime(timestamp) {
   return `Last update: ${day} ${hours}:${minutes}`;
 }
 //Handles forecast display
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row forecast">`;
   let days = ["Tue", "Wed", "Thu", "Fri"];
-  days.forEach(function (day) {
+  function callback(day) {
     forecastHTML =
       forecastHTML +
       `
 <div class="col-3 next-day">
             <h4>${day}</h4>
-            <span>🌧</span>
+            <img
+                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  id="icon"
+                />
             <p>9°C</p>
           </div>`;
-  });
+  }
+  days.forEach(callback);
+
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
-// Handles weather display
+// Handles forecast data
+function getForecast(coordinates) {
+  let apiEndpoint = `https://api.openweathermap.org/data/2.5/onecall?`;
+  let apiKey = "fcb92fde799e36113733f7774e4cedb1";
+  let forecastUrl = `${apiEndpoint}lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(forecastUrl).then(displayForecast);
+}
 
+// Handles weather display
 function showWeather(response) {
   let humidity = response.data.main.humidity;
   let wind = response.data.wind.speed;
@@ -68,6 +81,8 @@ function showWeather(response) {
   document.querySelector("#updated-at").innerHTML = formatTime(
     updatedAt * 1000
   );
+
+  getForecast(response.data.coord);
 }
 
 // Handles search
@@ -150,4 +165,3 @@ let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", showCurrentLocationTemperature);
 
 handleSearch("London");
-displayForecast();
