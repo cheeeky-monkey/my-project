@@ -1,30 +1,31 @@
 // Handles 'Updated at' section
 
-let currentTime = new Date();
+function formatTime(timestamp) {
+  let time = new Date(timestamp);
 
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wedneday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[currentTime.getDay()];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wedneday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[time.getDay()];
 
-let hours = currentTime.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
+  let hours = time.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  let minutes = time.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `Last update: ${day} ${hours}:${minutes}`;
 }
-
-let minutes = currentTime.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-
-let updatedOn = document.querySelector("#current-time");
-updatedOn.innerHTML = `Updated on ${day} ${hours}:${minutes}`;
 
 // Handles weather display
 
@@ -33,6 +34,7 @@ function showWeather(response) {
   let wind = response.data.wind.speed;
   let description = response.data.weather[0].description;
   let icon = response.data.weather[0].icon;
+  let updatedAt = response.data.dt;
 
   celsiusTemperature = response.data.main.temp;
 
@@ -45,6 +47,9 @@ function showWeather(response) {
   document
     .querySelector("#icon-now")
     .setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+  document.querySelector("#updated-at").innerHTML = formatTime(
+    updatedAt * 1000
+  );
 }
 
 // Handles search
