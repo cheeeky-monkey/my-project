@@ -26,6 +26,24 @@ function formatTime(timestamp) {
 
   return `Last update: ${day} ${hours}:${minutes}`;
 }
+//Handles forecast display
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row forecast">`;
+  let days = ["Tue", "Wed", "Thu", "Fri"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+<div class="col-3 next-day">
+            <h4>${day}</h4>
+            <span>🌧</span>
+            <p>9°C</p>
+          </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 
 // Handles weather display
 
@@ -132,3 +150,4 @@ let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", showCurrentLocationTemperature);
 
 handleSearch("London");
+displayForecast();

@@ -50,11 +50,11 @@ small {
 
 .now-tomorrow,
 .search-bar,
-.next-four-days {
+.forecast {
   padding: 20px;
 }
 
-.next-days {
+.next-day {
   text-align: center;
 }
 
