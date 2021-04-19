@@ -26,26 +26,39 @@ function formatTime(timestamp) {
 
   return `Last update: ${day} ${hours}:${minutes}`;
 }
+
+//Formats days in forecast
+function formatDay(timestamp) {
+  let day = new Date(timestamp * 1000);
+
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day.getDay()];
+}
+
 //Handles forecast display
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row forecast">`;
-  let days = ["Tue", "Wed", "Thu", "Fri"];
-  function callback(day) {
-    forecastHTML =
-      forecastHTML +
-      `
+
+  function callback(dayForecast, index) {
+    if (index < 4)
+      forecastHTML =
+        forecastHTML +
+        `
 <div class="col-3 next-day">
-            <h4>${day}</h4>
+            <h4>${formatDay(dayForecast.dt)}</h4>
             <img
-                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  src="http://openweathermap.org/img/wn/${
+                    dayForecast.weather[0].icon
+                  }@2x.png"
                   id="icon"
                 />
-            <p>9°C</p>
+            <p id="max-temp">${Math.round(dayForecast.temp.max)}°</p>
+            <p id="min-temp">${Math.round(dayForecast.temp.min)}°</p>
           </div>`;
   }
-  days.forEach(callback);
+  forecast.forEach(callback);
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;

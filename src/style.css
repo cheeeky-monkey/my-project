@@ -38,6 +38,10 @@ small {
   margin: 20px;
 }
 
+p {
+  margin-bottom: 5px;
+}
+
 .now,
 .tomorrow {
   text-align: left;
@@ -95,6 +99,10 @@ small {
 
 #description::first-letter {
   text-transform: capitalize;
+}
+
+#min-temp {
+  color: #4a3c7cc2;
 }
 
 .units a {
