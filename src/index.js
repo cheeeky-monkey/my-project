@@ -42,11 +42,11 @@ function displayForecast(response) {
   let forecastHTML = `<div class="row forecast">`;
 
   function callback(dayForecast, index) {
-    if (index < 4)
+    if (index < 6)
       forecastHTML =
         forecastHTML +
         `
-<div class="col-3 next-day">
+<div class="col-2 next-day">
             <h4>${formatDay(dayForecast.dt)}</h4>
             <img
                   src="http://openweathermap.org/img/wn/${
