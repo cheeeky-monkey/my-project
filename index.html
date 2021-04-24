@@ -51,7 +51,7 @@
               </div>
               <div class="col-4 temp">
                 <h3 id="current-temp">></h3>
-                <p id="description"></p>
+                <p id="description-now"></p>
               </div>
               <div class="col-5 detailed-weather">
                 <ul>
@@ -63,11 +63,16 @@
           </div>
           <div class="col-5">
             <h2>Tomorrow</h2>
-            <div class="row tomorrow">
-              <div class="col-6 icon">☁️</div>
-              <div class="col-6 temp">
-                <h3>12°C</h3>
-                <p>Cloudy</p>
+            <div class="row" id="tomorrow">
+              <div class="col-4">
+                <img
+                  src="http://openweathermap.org/img/wn/02n@2x.png"
+                  id="icon-tomorrow"
+                />
+              </div>
+              <div class="col-8 temp">
+                <h3 id="tomorrow-temp">></h3>
+                <p id="description-tomorrow"></p>
               </div>
             </div>
           </div>

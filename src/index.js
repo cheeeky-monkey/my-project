@@ -39,26 +39,37 @@ function formatDay(timestamp) {
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
+  let celsiusTemperature = forecast[1].temp.day;
+  let description = forecast[1].weather[0].description;
+  let icon = forecast[1].weather[0].icon;
+  document.querySelector("#tomorrow-temp").innerHTML = `${Math.round(
+    celsiusTemperature
+  )}°C`;
+  document.querySelector("#description-tomorrow").innerHTML = `${description}`;
+  document
+    .querySelector("#icon-tomorrow")
+    .setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+
   let forecastHTML = `<div class="row forecast">`;
 
-  function callback(dayForecast, index) {
-    if (index < 6)
+  function sixDaysCallback(dayForecast, index) {
+    if (index > 1 && index < 8)
       forecastHTML =
         forecastHTML +
         `
-<div class="col-2 next-day">
-            <h4>${formatDay(dayForecast.dt)}</h4>
-            <img
-                  src="http://openweathermap.org/img/wn/${
-                    dayForecast.weather[0].icon
-                  }@2x.png"
-                  id="icon"
-                />
-            <p id="max-temp">${Math.round(dayForecast.temp.max)}°</p>
-            <p id="min-temp">${Math.round(dayForecast.temp.min)}°</p>
-          </div>`;
+  <div class="col-2 next-day">
+              <h4>${formatDay(dayForecast.dt)}</h4>
+              <img
+                    src="http://openweathermap.org/img/wn/${
+                      dayForecast.weather[0].icon
+                    }@2x.png"
+                    id="icon"
+                  />
+              <p id="max-temp">${Math.round(dayForecast.temp.max)}°</p>
+              <p id="min-temp">${Math.round(dayForecast.temp.min)}°</p>
+            </div>`;
   }
-  forecast.forEach(callback);
+  forecast.forEach(sixDaysCallback);
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -87,7 +98,7 @@ function showWeather(response) {
   )}°C`;
   document.querySelector("#humidity").innerHTML = `${humidity}%`;
   document.querySelector("#wind").innerHTML = `${wind}m/s`;
-  document.querySelector("#description").innerHTML = `${description}`;
+  document.querySelector("#description-now").innerHTML = `${description}`;
   document
     .querySelector("#icon-now")
     .setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
@@ -137,6 +148,7 @@ function handleLocation(position) {
 
 // Handles current location weather
 function showCurrentLocationTemperature(event) {
+  debugger;
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(handleLocation);
 }
