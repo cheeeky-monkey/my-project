@@ -146,7 +146,6 @@ function handleLocation(position) {
 
 // Handles current location weather
 function showCurrentLocationTemperature(event) {
-  debugger;
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(handleLocation);
 }
