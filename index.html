@@ -27,7 +27,7 @@
     <container>
       <div class="weather-app">
         <div class="row search-bar">
-          <div class="col-9 search">
+          <div class="col-lg-9 col-sm-12 search mt-1">
             <form id="search">
               <input
                 type="text"
@@ -39,7 +39,7 @@
               <button type="submit" value="search" id="search-button"><i class="fas fa-search-location"></i> Search</button>
             </form>
           </div>
-          <div class="col-3">
+          <div class="col-lg-3 col-sm-12 mt-1">
             <button id="current-location">
             <i class="fas fa-map-marker-alt"></i> Current Location</i>
             </button>
@@ -47,20 +47,20 @@
         </div>
         <h1 id="city" class="highlight"></h1>
         <div class="row now-tomorrow">
-          <div class="col-7 now">
+          <div class="now col-lg-7 col-sm-12">
             <h2>Now</h2>
             <div class="row">
-              <div class="col-3">
+              <div class="col-lg-3 col-sm-6">
                 <img
-                  src="http://openweathermap.org/img/wn/10d@2x.png"
+                  src="assets/10d.gif"
                   id="icon-now"
                 />
               </div>
-              <div class="col-4 temp highlight">
+              <div class="col-lg-4 col-sm-6 temp highlight">
                 <h3 id="current-temp"></h3>
                 <p id="description-now"></p>
               </div>
-              <div class="col-5 detailed-weather">
+              <div class="col-lg-5 col-sm-12 detailed-weather">
                 <ul>
                   <li>Humidity: <span id="humidity"></span></li>
                   <li>Wind: <span id="wind"></span></li>
@@ -69,12 +69,12 @@
               </div>
             </div>
           </div>
-          <div class="col-5" id="tomorrow">
+          <div class="col-lg-5 col-sm-12" id="tomorrow">
             <h2>Tomorrow</h2>
             <div class="row" class="tomorrow">
               <div class="col-4">
                 <img
-                  src="http://openweathermap.org/img/wn/02n@2x.png"
+                  src="assets/02n.gif"
                   id="icon-tomorrow"
                 />
               </div>
