@@ -3,6 +3,7 @@ body {
 }
 
 h1 {
+  color: #ff8e71;
   text-align: center;
   margin: 20px;
   text-transform: uppercase;
@@ -15,6 +16,7 @@ h2 {
 }
 
 h3 {
+  color: #ff8e71;
   text-align: left;
   font-size: 35px;
 }
@@ -52,10 +54,6 @@ p {
   margin-bottom: 5px;
 }
 
-.highlight {
-  color: rgb(65, 46, 131);
-}
-
 .now-tomorrow,
 .search-bar,
 .forecast {
@@ -63,7 +61,6 @@ p {
 }
 
 .now {
-  color: rgb(65, 46, 131);
   font-weight: 900;
   border-right: 1px solid black;
 }
@@ -103,7 +100,7 @@ p {
 }
 
 #current-location:hover {
-  background-color: #4a3c7c;
+  background-color: #ff8e71;
   color: white;
 }
 
