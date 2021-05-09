@@ -1,7 +1,12 @@
+body {
+  font-family: "Dosis", sans-serif;
+}
+
 h1 {
   text-align: center;
   margin: 20px;
   text-transform: uppercase;
+  font-weight: 900;
 }
 
 h2 {
@@ -27,8 +32,12 @@ li {
   list-style: none;
 }
 
+button {
+  box-shadow: 5px 5px 10px -8px rgb(0 0 0 / 75%);
+}
+
 img {
-  width: 70px;
+  width: 40px;
 }
 
 small {
@@ -42,14 +51,8 @@ p {
   margin-bottom: 5px;
 }
 
-.now,
-.tomorrow {
-  text-align: left;
-}
-
-.icon {
-  text-align: right;
-  font-size: 60px;
+.highlight {
+  color: rgb(65, 46, 131);
 }
 
 .now-tomorrow,
@@ -58,16 +61,18 @@ p {
   padding: 20px;
 }
 
+.now {
+  color: rgb(65, 46, 131);
+  font-weight: 900;
+}
+
 .next-day {
   text-align: center;
 }
 
-.temp {
-  padding-left: 30px;
-}
-
 .weather-app {
   border: 1px solid #7787;
+  border-radius: 2px;
   padding: 10px;
   margin: 20px;
   max-width: 800px;
@@ -78,15 +83,26 @@ p {
   color: white;
 }
 
+#search-button:hover {
+  background-color: white;
+  color: #4a3c7c;
+}
+
 #current-location,
 #search-button {
   padding: 2px 20px;
   border: 1px solid #4a3c7c;
   border-radius: 3px;
+  transition: all 200ms ease;
 }
 
 #current-location {
   background-color: white;
+}
+
+#current-location:hover {
+  background-color: #4a3c7c;
+  color: white;
 }
 
 #current-time {
@@ -101,8 +117,18 @@ p {
   text-transform: capitalize;
 }
 
+#icon-now,
+#icon-tomorrow {
+  margin: 0 20px;
+  width: 70px;
+}
+
 #min-temp {
   color: #4a3c7cc2;
+}
+
+#tomorrow {
+  border-left: 1px solid black;
 }
 
 .units a {

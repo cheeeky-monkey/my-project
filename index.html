@@ -11,6 +11,15 @@
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <script
+      src="https://kit.fontawesome.com/0291e9b93e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="src/style.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
@@ -27,39 +36,42 @@
                 id="search-field"
                 autocomplete="off"
               />
-              <input type="submit" value="search" id="search-button" />
+              <button type="submit" value="search" id="search-button"><i class="fas fa-search-location"></i> Search</button>
             </form>
           </div>
           <div class="col-3">
-            <button id="current-location">Current Location</button>
+            <button id="current-location">
+            <i class="fas fa-map-marker-alt"></i> Current Location</i>
+            </button>
           </div>
         </div>
-        <h1 id="city"></h1>
+        <h1 id="city" class="highlight"></h1>
         <div class="row now-tomorrow">
-          <div class="col-7">
+          <div class="col-7 now">
             <h2>Now</h2>
-            <div class="row now">
+            <div class="row">
               <div class="col-3">
                 <img
                   src="http://openweathermap.org/img/wn/10d@2x.png"
                   id="icon-now"
                 />
               </div>
-              <div class="col-4 temp">
-                <h3 id="current-temp">></h3>
+              <div class="col-4 temp highlight">
+                <h3 id="current-temp"></h3>
                 <p id="description-now"></p>
               </div>
               <div class="col-5 detailed-weather">
                 <ul>
                   <li>Humidity: <span id="humidity"></span></li>
                   <li>Wind: <span id="wind"></span></li>
+                  <li>Pressure: <span id="pressure"></span></li>
                 </ul>
               </div>
             </div>
           </div>
-          <div class="col-5">
+          <div class="col-5" id="tomorrow">
             <h2>Tomorrow</h2>
-            <div class="row" id="tomorrow">
+            <div class="row" class="tomorrow">
               <div class="col-4">
                 <img
                   src="http://openweathermap.org/img/wn/02n@2x.png"

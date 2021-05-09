@@ -48,7 +48,7 @@ function displayForecast(response) {
   document.querySelector("#description-tomorrow").innerHTML = `${description}`;
   document
     .querySelector("#icon-tomorrow")
-    .setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+    .setAttribute("src", `assets/${icon}.gif`);
 
   let forecastHTML = `<div class="row forecast">`;
 
@@ -60,9 +60,7 @@ function displayForecast(response) {
   <div class="col-2 next-day">
               <h4>${formatDay(dayForecast.dt)}</h4>
               <img
-                    src="http://openweathermap.org/img/wn/${
-                      dayForecast.weather[0].icon
-                    }@2x.png"
+                    src="assets/${dayForecast.weather[0].icon}.gif"
                     id="icon"
                   />
               <p id="max-temp">${Math.round(dayForecast.temp.max)}°</p>
@@ -87,6 +85,7 @@ function getForecast(coordinates) {
 function showWeather(response) {
   let humidity = response.data.main.humidity;
   let wind = response.data.wind.speed;
+  let pressure = response.data.main.pressure;
   let description = response.data.weather[0].description;
   let icon = response.data.weather[0].icon;
   let updatedAt = response.data.dt;
@@ -98,10 +97,9 @@ function showWeather(response) {
   )}°C`;
   document.querySelector("#humidity").innerHTML = `${humidity}%`;
   document.querySelector("#wind").innerHTML = `${wind}m/s`;
+  document.querySelector("#pressure").innerHTML = `${pressure}hPa`;
   document.querySelector("#description-now").innerHTML = `${description}`;
-  document
-    .querySelector("#icon-now")
-    .setAttribute("src", `http://openweathermap.org/img/wn/${icon}@2x.png`);
+  document.querySelector("#icon-now").setAttribute("src", `assets/${icon}.gif`);
   document.querySelector("#updated-at").innerHTML = formatTime(
     updatedAt * 1000
   );
